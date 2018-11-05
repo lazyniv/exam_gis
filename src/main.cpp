@@ -1,3 +1,4 @@
+#include<functional>
 #include<string>
 #include<fstream>
 #include<iostream>
@@ -15,6 +16,19 @@ public:
 class FileAnalyzer : public Command {
 protected:
   string fPath;
+  using CallBack = std::function<int(std::ifstream&)>;
+
+  int doWithFile(CallBack f) {
+    std::ifstream ifStream;
+    ifStream.open(fPath.c_str());
+    if(!ifStream.is_open())
+      throw "FIXME";
+
+    int result = f(ifStream);
+
+    ifStream.close();
+    return result;
+  }
 public:
   FileAnalyzer(std::string fPath) {
     this -> fPath = fPath;
@@ -25,19 +39,7 @@ class Counter : public FileAnalyzer {
   std::string word;
 public:
   Counter(string fPath, string word): FileAnalyzer(fPath) {
-    this -> word = word;
-  }
-
-  int doWithFile(int (Counter::*f)(std::ifstream&)) {
-    std::ifstream ifStream;
-    ifStream.open(fPath.c_str());
-    if(!ifStream.is_open())
-      throw "FIXME";
-
-    int result =(this->*f)(ifStream);
-
-    ifStream.close();
-    return result;
+    this->word = word;
   }
 
   int wordCount(std::ifstream &ifStream) {
@@ -53,7 +55,9 @@ public:
   }
 
   string resultAsString() {
-    return std::to_string(doWithFile(&Counter::wordCount));
+    return std::to_string(doWithFile([this](std::ifstream &ifStream){
+            return this->wordCount(ifStream);
+          }));
   }
 };
 
@@ -70,22 +74,29 @@ class Hash: public FileAnalyzer {
     }
   public:
     Hash(string fPath): FileAnalyzer(fPath) {}
-    unsigned int checkSum(){
+
+    unsigned int checkSum(std::ifstream &ifStream){
       unsigned int result = 0;
-      unsigned int buf = 0;
-      std::ifstream ifStream(fPath.c_str(), ios::binary);
       while(!ifStream.eof())
       {
         char buf[] = {0,0,0,0};
         ifStream.read(buf, 4);
         result += arrayToInt(buf);
-        std::cout << result <<std::endl;//FIXME
       }
       return result;
     }
+
     string resultAsString() {
-      return std::to_string(checkSum());
+      return std::to_string(doWithFile([this](std::ifstream &ifStream){
+              return this->checkSum(ifStream);
+            }));
     }
+};
+
+class Help: public Command {
+  string resultAsString() {
+    return "FIXME: реализовать";
+  }
 };
 
 int main(int argc, char *argv[]) {
