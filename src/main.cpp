@@ -4,47 +4,56 @@
 using namespace std;
 class Command {
   public:
-    virtual void run() = 0;
+
+  void run() {
+    std::cout << resultAsString();
+  }
+
+  virtual string resultAsString() = 0;
 };
 
 class FileAnalyzer : public Command {
 protected:
   string fPath;
-  std::ifstream inStream;
 public:
-  FileAnalyzer(std::string fpath) {
+  FileAnalyzer(std::string fPath) {
     this -> fPath = fPath;
   }
-  virtual void InStreamOpen() = 0;
 };
 
 class Counter : public FileAnalyzer {
   std::string word;
 public:
-  Counter(string word, string fPath): FileAnalyzer(fPath) {
+  Counter(string fPath, string word): FileAnalyzer(fPath) {
     this -> word = word;
   }
 
-  void InStreamOpen() override {
-    inStream.open(fPath.c_str());
-    cout<<fPath<<endl;
-    if(!inStream.is_open()) {
-      std::cout<<"fixme"<<endl;
+  int doWithFile(int (Counter::*f)(std::ifstream&)) {
+    std::ifstream ifStream;
+    ifStream.open(fPath.c_str());
+    if(!ifStream.is_open())
       throw "FIXME";
-     }
+
+    int result =(this->*f)(ifStream);
+
+    ifStream.close();
+    return result;
   }
 
-  void run() {
-    unsigned int count;
-    string buf;//FIXME
-    InStreamOpen();
-    /*while(!inStream.eof()) {
-      inStream >> buf;
-      cout << buf << endl;
+  int wordCount(std::ifstream &ifStream) {
+    unsigned int count = 0;
+    string buf;
+    while(!ifStream.eof()) {
+      buf = '\0';
+      ifStream >> buf;
       if(buf == word)
         count++;
-    }*/
-    std::cout << count;
+    }
+    return count;
+  }
+
+  string resultAsString() {
+    return std::to_string(doWithFile(&Counter::wordCount));
   }
 };
 
@@ -53,7 +62,7 @@ public:
 };*/
 
 int main(int argc, char *argv[]) {
-  Command *c = new Counter("input.txt", "world");
+  Command *c = new Counter("test/fixtures/input.txt", "world");
   c->run();
   return 0;
 }
