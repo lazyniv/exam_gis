@@ -1,9 +1,9 @@
 #include"FileAnalyzer.h"
 
 int FileAnalyzer::doWithFile(CallBack f) {
-  std::ifstream ifstream(fpath.c_str());
+  std::ifstream ifstream(fPath.c_str());
   if(!ifstream.is_open())
-    throw "fixme";
+    throw "Can't open file";
 
   int result = f(ifstream);
 
@@ -12,6 +12,6 @@ int FileAnalyzer::doWithFile(CallBack f) {
 }
 
 FileAnalyzer::FileAnalyzer(std::string fPath) {
-  this -> fPath = fPath;
+  this->fPath = fPath;
 }
 

@@ -1,7 +1,7 @@
-#include<string>
-#include<iostream>
 #ifndef COMMAND_H
 #define COMMAND_H
+#include<string>
+#include<iostream>
 class Command {
 
   public:

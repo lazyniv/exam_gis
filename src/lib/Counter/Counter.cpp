@@ -1,4 +1,10 @@
 #include"Counter.h"
+
+Counter::Counter(std::string fPath, std::string word): FileAnalyzer(fPath){
+  this->word = word;
+
+}
+
 int Counter::wordCount(std::ifstream &ifStream) {
   unsigned count = 0;
   std::string buf;

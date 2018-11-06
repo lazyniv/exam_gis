@@ -1,6 +1,9 @@
-#include"Command/Command.h"
+#ifndef FILE_ANALYZER_H
+#define FILE_ANALYZER_H
+#include<string>
 #include<fstream>
 #include<functional>
+#include"../Command/Command.h"
 class FileAnalyzer: public Command {
 
   protected:
@@ -11,4 +14,4 @@ class FileAnalyzer: public Command {
   public:
     FileAnalyzer(std::string);
 };
-
+#endif

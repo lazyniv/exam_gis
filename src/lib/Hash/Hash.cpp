@@ -15,7 +15,7 @@ unsigned Hash::checkSum(std::ifstream &ifStream){
   while(!ifStream.eof())
   {
     char buf[] = {0,0,0,0};
-    ifStream.read(buf, 4);
+    ifStream.read((char *)&buf, 4);
     result += arrayToInt(buf);
   }
   return result;
