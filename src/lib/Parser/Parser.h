@@ -8,6 +8,9 @@ class Parser {
   private:
     char **argv;
     int argc;
+    Command *parseOpt();
+    std::string cmd();
+    std::string errMessage(std::string);
   public:
     Parser(int, char **);
     Command *parse();

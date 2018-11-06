@@ -10,12 +10,11 @@ int main(int argc, char **argv) {
   Parser parser(argc, argv);
   try {
     parser.parse()->run();
-  } catch (char *e) {
+  } catch (std::string e) {
     std::cerr << "ERROR: " << e << "\n";
     return 1;
   }
   return 0;
-  //
 //  Command *c1 = new Counter("test/fixtures/input.txt", "world");
 //  c1->run();
 //  std::cout << "\n\n";
