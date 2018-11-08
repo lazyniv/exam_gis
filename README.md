@@ -32,7 +32,7 @@ $ build/test -h
 Установка Ruby зависимостей:
 
 ```
-$ gem install budler
+$ gem install bundler
 $ bundle
 ```
 
