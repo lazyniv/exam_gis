@@ -9,7 +9,7 @@ $ test -f Test.tst -m words -v mother
 ```
 
 2) печатает 32-битную чексумму, рассчитанную по алгоритму checksum = word1 + word2 +
-+ wordN (word1..wordN – 32-хбитные слова, представляющие содержимое файла)
+... + wordN (word1..wordN – 32-хбитные слова, представляющие содержимое файла)
 ```
 $ test -f Test.tst -m checksum
 ```
