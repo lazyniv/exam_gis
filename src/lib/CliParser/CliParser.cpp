@@ -39,10 +39,11 @@ std::string CliParser::errMessage(std::string mess) {
 
 Command *CliParser::parse() {
    parseOpt();
-//  if(argc < 2)
-//    throw errMessage("Missing arguments");
-//  if(help)
-//    return new Help();
+  if(argc < 2)
+    throw errMessage("Missing arguments");
+
+  if(help)
+    return new Help();
 //  if(!fPath.empty()) {
 //    if(mode == "words") {
 //      if(!word.empty())

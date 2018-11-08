@@ -1,6 +1,6 @@
 GCC = "g++"
 BULD_DIR = "build"
-TARGET = "test2gis"
+TARGET = "test"
 SRC = "./src"
 LIB = "lib"
 COMMAND = "Command"
@@ -24,14 +24,3 @@ $(SRC)/main.cpp -o ./$(BULD_DIR)/$(TARGET)
 
 mkbdir:
 	mkdir -p $(BULD_DIR)
-
-test_hash: $(TARGET)
-	./$(BULD_DIR)/$(TARGET) -f test/fixtures/input.bin -m checksum
-test_counter: $(TARGET)
-	./$(BULD_DIR)/$(TARGET) -f test/fixtures/input.txt -m words -v $(WORD)
-test_help: $(TARGET)
-	./$(BULD_DIR)/$(TARGET) -h
-test_error: $(TARGET)
-	./$(BULD_DIR)/$(TARGET) -f ewfewfwe
-debug: $(TARGET)
-	$(GDB) ./$(BULD_DIR)/$(TARGET)
