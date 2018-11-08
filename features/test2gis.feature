@@ -1,0 +1,59 @@
+Feature: test2gis
+
+  Scenario: Error missing arguments
+    When I run `build/test2gis`
+    Then the exit status should not be 0
+    Then the stderr should contain "ERROR: Missing arguments"
+
+  Scenario: Error unknown parametr
+    When I run `build/test2gis -c`
+    Then the exit status should be 0
+    Then the stderr should contain "invalid option"
+
+  Scenario: Error invalid mode (key -m)
+    When I run `build/test2gis -m invalid`
+    Then the exit status should not be 0
+    Then the stderr should contain "ERROR: Invalid mode `invalid'"
+
+  Scenario: Error missing mode (key -m)
+    When I run `build/test2gis -f path`
+    Then the exit status should not be 0
+    Then the stderr should contain "ERROR: Missing mode"
+
+  Scenario: Error missing path (key -f) when checksum mode
+    When I run `build/test2gis -m checksum`
+    Then the exit status should not be 0
+    Then the stderr should contain "ERROR: Missing path"
+
+  Scenario: Error missing path (key -f) when words mode
+    When I run `build/test2gis -m words -v word`
+    Then the exit status should not be 0
+    Then the stderr should contain "ERROR: Missing path"
+
+  Scenario: Error missing word (key -f) when words mode
+    When I run `build/test2gis -m words -f path`
+    Then the exit status should not be 0
+    Then the stderr should contain "ERROR: Missing word"
+
+  Scenario: Error open file
+    When I run `build/test2gis -m checksum -f invalipath`
+    Then the exit status should not be 0
+    Then the stderr should contain "ERROR: Can't open file"
+
+  Scenario: help message
+    When I run `build/test2gis -h`
+    Then the stdout should contain:
+    """
+    --------
+    TODO
+    --------
+    """
+  Scenario: Checksum mode
+    When I run `build/test2gis -m checksum -f test/fixtures/input.bin`
+    Then the stdout should contain 262
+
+  Scenario: Words mode
+    When I run `build/test2gis -m words -f test/fixtures/input.bin -v hello`
+    Then the stdout should contain 3
+
+
