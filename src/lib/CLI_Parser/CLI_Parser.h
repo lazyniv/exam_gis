@@ -3,16 +3,18 @@
 #include"../Counter/Counter.h"
 #include"../Hash/Hash.h"
 #include"../Help/Help.h"
-
-class Parser {
+#include<string>
+#include<unistd.h>
+class CLI_Parser {
   private:
     char **argv;
     int argc;
+    int h;
     Command *parseOpt();
     std::string cmd();
     std::string errMessage(std::string);
   public:
-    Parser(int, char **);
+    CLI_Parser(int, char **);
     Command *parse();
 };
 #endif

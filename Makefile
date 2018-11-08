@@ -8,8 +8,9 @@ HASH = "Hash"
 COUNTER = "Counter"
 FILE_ANALYZER = "FileAnalyzer"
 HELP = "Help"
-PARSER = "Parser"
+CLI_PARSER = "CLI_Parser"
 GDB = "gdb"
+WORD = "world"
 
 $(TARGET): mkbdir
 	$(GCC) -std=c++1z $(SRC)/$(LIB)/$(FILE_ANALYZER)/FileAnalyzer.cpp \
@@ -17,15 +18,18 @@ $(SRC)/$(LIB)/$(COUNTER)/Counter.cpp \
 $(SRC)/$(LIB)/$(HASH)/Hash.cpp \
 $(SRC)/$(LIB)/$(COMMAND)/Command.cpp \
 $(SRC)/$(LIB)/$(HELP)/Help.cpp \
-$(SRC)/$(LIB)/$(PARSER)/Parser.cpp \
+$(SRC)/$(LIB)/$(CLI_PARSER)/CLI_Parser.cpp \
 $(SRC)/main.cpp -o ./$(BULD_DIR)/$(TARGET)
 
 
 mkbdir:
 	mkdir -p $(BULD_DIR)
 
-test: $(TARGET)
-	./$(BULD_DIR)/$(TARGET)
-
+test_hash: $(TARGET)
+	./$(BULD_DIR)/$(TARGET) -f test/fixtures/input.bin -m checksum
+test_counter: $(TARGET)
+	./$(BULD_DIR)/$(TARGET) -f test/fixtures/input.txt -m words -v $(WORD)
+test_help: $(TARGET)
+	./$(BULD_DIR)/$(TARGET) -h
 debug: $(TARGET)
 	$(GDB) ./$(BULD_DIR)/$(TARGET)
