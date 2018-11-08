@@ -5,9 +5,9 @@
 #include"lib/Counter/Counter.h"
 #include"lib/Hash/Hash.h"
 #include"lib/Help/Help.h"
-#include"lib/CLI_Parser/CLI_Parser.h"
+#include"lib/CliParser/CliParser.h"
 int main(int argc, char **argv) {
-  CLI_Parser parser(argc, argv);
+  CliParser parser(argc, argv);
   try {
     parser.parse()->run();
   } catch (std::string e) {

@@ -5,16 +5,19 @@
 #include"../Help/Help.h"
 #include<string>
 #include<unistd.h>
-class CLI_Parser {
+class CliParser {
   private:
     char **argv;
     int argc;
-    int h;
-    Command *parseOpt();
+    std::string fPath; //FIXME
+    std::string word;  //FIXME
+    std::string mode; //FIXME
+    bool help = false;
+    void parseOpt();
     std::string cmd();
     std::string errMessage(std::string);
   public:
-    CLI_Parser(int, char **);
+    CliParser(int, char **);
     Command *parse();
 };
 #endif
