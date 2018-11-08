@@ -53,5 +53,5 @@ Feature: Console program "test"
     Then the stdout should contain "262"
 
   Scenario: Words mode
-    When I run `build/test -m words -f test/fixtures/input.bin -v hello`
+    When I run `build/test -m words -f test/fixtures/input.txt -v hello`
     Then the stdout should contain "3"
