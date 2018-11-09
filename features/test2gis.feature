@@ -13,12 +13,12 @@ Feature: Console program "test"
   Scenario: Error invalid mode (key -m)
     When I run `build/test -m invalid`
     Then the exit status should not be 0
-    Then the stderr should contain "ERROR: Invalid mode `invalid'"
+    Then the stderr should contain "ERROR: Invalid mode 'invalid'"
 
-  Scenario: Error missing mode (key -m)
-    When I run `build/test -f path`
-    Then the exit status should not be 0
-    Then the stderr should contain "ERROR: Missing mode"
+    # Scenario: Error missing mode (key -m)
+    # When I run `build/test -f path`
+    #Then the exit status should not be 0
+    # Then the stderr should contain "ERROR: Missing mode"
 
   Scenario: Error missing path (key -f) when checksum mode
     When I run `build/test -m checksum`

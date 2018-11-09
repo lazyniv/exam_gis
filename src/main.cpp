@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
   CliParser parser(argc, argv);
   try {
     parser.parse()->run();
-  } catch (std::string e) {
+  }catch (std::string e) {
     std::cerr << "ERROR: " << e << "\n";
     return 1;
   }

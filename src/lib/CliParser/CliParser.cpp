@@ -37,6 +37,12 @@ std::string CliParser::errMessage(std::string mess) {
   return mess + "\n Try `" + cmd() + " -h' for help.";
 }
 
+void CliParser::missing(std::string val, std::string mess)
+{
+  if(val.empty())
+    throw errMessage("Missing " + mess);
+}
+
 Command *CliParser::parse() {
 
   parseOpt();
@@ -46,15 +52,16 @@ Command *CliParser::parse() {
 
   if(help)
     return new Help();
-  if(!fPath.empty()) {
-    if(mode == "words") {
-      if(!word.empty())
-        return new Counter(fPath,word);
-      else throw errMessage("Missing word"); //FIXME
-    }
-    else if(mode == "checksum")
-      return new Hash(fPath);
-    else throw errMessage((std::string)"Invalid mode " + "'" + mode + "'");
+
+  if(mode == "words") {
+    missing(word,"word");
+    missing(fPath,"path to file");
+    return new Counter(fPath,word);
   }
-  else throw errMessage("Can't open file"); //FIXME
+  else if(mode == "checksum") {
+    missing(fPath,"path to file");
+    return new Hash(fPath);
+  }
+  else throw errMessage("Invalid mode '" + mode  + "'");
+
 }

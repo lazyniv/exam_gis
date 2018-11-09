@@ -16,6 +16,7 @@ class CliParser {
     void parseOpt();
     std::string cmd();
     std::string errMessage(std::string);
+    void missing(std::string, std::string);
   public:
     CliParser(int, char **);
     Command *parse();
