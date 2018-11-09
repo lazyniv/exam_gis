@@ -13,8 +13,8 @@ std::string CliParser::cmd() {
 void CliParser::parseOpt() {
   int opt = 0;
   std::string optString = "f:m:v:h";
-  opt = getopt(argc, argv, optString.c_str());
   while(opt != -1) {
+    opt = getopt(argc, argv, optString.c_str());
     switch(opt) {
       case 'f':
         fPath = optarg;
@@ -27,9 +27,9 @@ void CliParser::parseOpt() {
         break;
       case 'h':
         help = true;
-     // default: FIXME
+      case -1: break;
+      default: throw(errMessage(""));
      }
-    opt = getopt(argc, argv, optString.c_str());
   }
 }
 
@@ -38,21 +38,23 @@ std::string CliParser::errMessage(std::string mess) {
 }
 
 Command *CliParser::parse() {
-   parseOpt();
+
+  parseOpt();
+
   if(argc < 2)
     throw errMessage("Missing arguments");
 
   if(help)
     return new Help();
-//  if(!fPath.empty()) {
-//    if(mode == "words") {
-//      if(!word.empty())
-//        return new Counter(fPath,word);
-//      else throw errMessage("Word is empty"); //FIXME
-//    }
-//    else if(mode == "checksum")
-//      return new Hash(fPath);
-//    else throw errMessage("Invalid mode");
-//  }
-//  else throw errMessage("Path to file is empty"); //FIXME
+  if(!fPath.empty()) {
+    if(mode == "words") {
+      if(!word.empty())
+        return new Counter(fPath,word);
+      else throw errMessage("Missing word"); //FIXME
+    }
+    else if(mode == "checksum")
+      return new Hash(fPath);
+    else throw errMessage((std::string)"Invalid mode " + "'" + mode + "'");
+  }
+  else throw errMessage("Can't open file"); //FIXME
 }

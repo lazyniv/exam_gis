@@ -15,9 +15,4 @@ int main(int argc, char **argv) {
     return 1;
   }
   return 0;
-//  Command *c1 = new Counter("test/fixtures/input.txt", "world");
-//  c1->run();
-//  std::cout << "\n\n";
-//  Command *c2 = new Hash("test/fixtures/input.bin");
-//  c2->run();
 }

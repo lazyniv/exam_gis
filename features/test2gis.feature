@@ -7,7 +7,7 @@ Feature: Console program "test"
 
   Scenario: Error unknown parametr
     When I run `build/test -c`
-    Then the exit status should be 0
+    Then the exit status should not be 0
     Then the stderr should contain "invalid option"
 
   Scenario: Error invalid mode (key -m)
