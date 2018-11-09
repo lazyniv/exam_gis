@@ -1,13 +1,15 @@
 #ifndef COUNTER_H
 #define COUNTER_H
-#include<string>
-#include<fstream>
-#include"../FileAnalyzer/FileAnalyzer.h"
+#include <string>
+#include <fstream>
+#include "../FileAnalyzer/FileAnalyzer.h"
+
 class Counter: public FileAnalyzer {
 
   private:
     std::string word;
-    int wordCount(std::ifstream &);
+    unsigned wordCount(std::ifstream &);
+
   public:
     Counter(std::string, std::string);
     std::string resultAsString();

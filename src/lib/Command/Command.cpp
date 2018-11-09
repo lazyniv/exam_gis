@@ -1,6 +1,6 @@
-#include"Command.h"
+#include "Command.h"
 
 void Command::run() {
-  std::cout << resultAsString() << "\n";
+  std::cout << resultAsString() << std::endl;
 }
 

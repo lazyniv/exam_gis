@@ -1,10 +1,9 @@
-#include"Help.h"
+#include "Help.h"
 
-Help:: Help(CliParser *p) {
+Help::Help(CliParser *p) {
   this->cliParser = p;
 }
 
 std::string Help::resultAsString() {
-
-return "cool cli program Usage:\n" + cliParser->usage();
+  return "cool cli program Usage:\n" + cliParser->usage();
 }

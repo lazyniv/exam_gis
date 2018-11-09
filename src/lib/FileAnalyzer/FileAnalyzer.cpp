@@ -1,11 +1,11 @@
-#include"FileAnalyzer.h"
+#include "FileAnalyzer.h"
 
-int FileAnalyzer::doWithFile(CallBack f) {
+unsigned FileAnalyzer::doWithFile(CallBack f) {
   std::ifstream ifStream(fPath.c_str());
   if(!ifStream.is_open())
     throw *(new std::string("Can't open file"));
 
-  int result = f(ifStream);
+  unsigned result = f(ifStream);
 
   ifStream.close();
   return result;

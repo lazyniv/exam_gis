@@ -1,4 +1,5 @@
-#include"Hash.h"
+#include "Hash.h"
+
 unsigned Hash::arrayToInt(char *arr) {
   unsigned result = 0;
   result += (arr[0] << 24);
