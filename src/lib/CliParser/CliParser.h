@@ -9,9 +9,9 @@ class CliParser {
   private:
     char **argv;
     int argc;
-    std::string fPath; //FIXME
-    std::string word;  //FIXME
-    std::string mode; //FIXME
+    std::string fPath;
+    std::string word;
+    std::string mode;
     bool help = false;
     void parseOpt();
     std::string cmd();
@@ -20,5 +20,6 @@ class CliParser {
   public:
     CliParser(int, char **);
     Command *parse();
+    std::string usage();
 };
 #endif

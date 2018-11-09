@@ -15,11 +15,6 @@ Feature: Console program "test"
     Then the exit status should not be 0
     Then the stderr should contain "ERROR: Invalid mode 'invalid'"
 
-    # Scenario: Error missing mode (key -m)
-    # When I run `build/test -f path`
-    #Then the exit status should not be 0
-    # Then the stderr should contain "ERROR: Missing mode"
-
   Scenario: Error missing path (key -f) when checksum mode
     When I run `build/test -m checksum`
     Then the exit status should not be 0
@@ -36,7 +31,7 @@ Feature: Console program "test"
     Then the stderr should contain "ERROR: Missing word"
 
   Scenario: Error open file
-    When I run `build/test -m checksum -f invalipath`
+    When I run `build/test -m checksum -f invalidpath`
     Then the exit status should not be 0
     Then the stderr should contain "ERROR: Can't open file"
 
@@ -44,9 +39,14 @@ Feature: Console program "test"
     When I run `build/test -h`
     Then the stdout should contain:
     """
-    --------
-    TODO
-    --------
+    cool cli program Usage:
+    OPTS:
+      -h - show this message
+      -m - working mode [checksum|words]
+           - <words> counts words in the file
+           - <checksum> calculates of the file checksum
+      -f - filepath
+      -v - word (for <words> mode only)
     """
   Scenario: Checksum mode
     When I run `build/test -m checksum -f test/fixtures/input.bin`

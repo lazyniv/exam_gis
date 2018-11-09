@@ -7,10 +7,9 @@ class Counter: public FileAnalyzer {
 
   private:
     std::string word;
-
+    int wordCount(std::ifstream &);
   public:
     Counter(std::string, std::string);
-    int wordCount(std::ifstream &);
     std::string resultAsString();
 };
 #endif

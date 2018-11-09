@@ -43,6 +43,16 @@ void CliParser::missing(std::string val, std::string mess)
     throw errMessage("Missing " + mess);
 }
 
+std::string CliParser::usage() {
+  return "OPTS:\n\
+  -h - show this message\n\
+  -m - working mode [checksum|words]\n\
+       - <words> counts words in the file\n\
+       - <checksum> calculates of the file checksum\n\
+  -f - filepath\n\
+  -v - word (for <words> mode only)\n";
+}
+
 Command *CliParser::parse() {
 
   parseOpt();
@@ -51,7 +61,7 @@ Command *CliParser::parse() {
     throw errMessage("Missing arguments");
 
   if(help)
-    return new Help();
+    return new Help(this);
 
   if(mode == "words") {
     missing(word,"word");

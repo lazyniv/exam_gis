@@ -17,8 +17,8 @@ $(TARGET): mkbdir
 $(SRC)/$(LIB)/$(COUNTER)/Counter.cpp \
 $(SRC)/$(LIB)/$(HASH)/Hash.cpp \
 $(SRC)/$(LIB)/$(COMMAND)/Command.cpp \
-$(SRC)/$(LIB)/$(HELP)/Help.cpp \
 $(SRC)/$(LIB)/$(CliPARSER)/CliParser.cpp \
+$(SRC)/$(LIB)/$(HELP)/Help.cpp \
 $(SRC)/main.cpp -o ./$(BULD_DIR)/$(TARGET)
 
 
