@@ -31,7 +31,7 @@ Feature: Console program "test"
     Then the stderr should contain "ERROR: Missing word"
 
   Scenario: Error open file
-    When I run `build/test -m checksum -f invalidpath`
+    When I run `build/test -m words -f invalidpath -v fake`
     Then the exit status should not be 0
     Then the stderr should contain "ERROR: Can't open file"
 
@@ -49,9 +49,15 @@ Feature: Console program "test"
       -v - word (for <words> mode only)
     """
   Scenario: Checksum mode
-    When I run `build/test -m checksum -f test/fixtures/input.bin`
-    Then the stdout should contain "262"
+    When I'm run `build/test -m checksum -f test/fixtures/input.bin`
+    Then a stdout should contain:
+    """
+    262
+    """
 
   Scenario: Words mode
-    When I run `build/test -m words -f test/fixtures/input.txt -v hello`
-    Then the stdout should contain "3"
+    When I'm run `build/test -m words -f test/fixtures/input.txt -v hello`
+    Then a stdout should contain:
+    """
+    3
+    """

@@ -19,7 +19,7 @@ int Counter::wordCount(std::ifstream &ifStream) {
 
 std::string Counter::resultAsString() {
   return std::to_string(doWithFile([this](std::ifstream &ifStream) {
-        return this->wordCount(ifStream);
+          return this->wordCount(ifStream);
         }));
 }
 

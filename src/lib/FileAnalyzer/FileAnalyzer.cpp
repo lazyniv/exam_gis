@@ -3,7 +3,7 @@
 int FileAnalyzer::doWithFile(CallBack f) {
   std::ifstream ifStream(fPath.c_str());
   if(!ifStream.is_open())
-    throw new std::string("Can't open file");
+    throw *(new std::string("Can't open file"));
 
   int result = f(ifStream);
 
