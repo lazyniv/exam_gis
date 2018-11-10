@@ -5,10 +5,10 @@
 #include "lib/Counter/Counter.h"
 #include "lib/Hash/Hash.h"
 #include "lib/Help/Help.h"
-#include "lib/CliParser/CliParser.h"
+#include "lib/CliDefinition/CliDefinition.h"
 
 int main(int argc, char **argv) {
-  CliParser parser(argc, argv);
+  CliDefinition parser(argc, argv);
   try {
     parser.parse()->run();
   }

@@ -12,7 +12,7 @@ class Counter: public FileAnalyzer {
 
   public:
     Counter(std::string, std::string);
-    std::string resultAsString();
+    std::string resultAsString() override;
 };
 #endif
 

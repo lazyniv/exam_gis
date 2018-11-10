@@ -11,7 +11,7 @@ class Hash: public FileAnalyzer {
 
   public:
     Hash(std::string);
-    std::string resultAsString();
+    std::string resultAsString() override;
 };
 #endif
 

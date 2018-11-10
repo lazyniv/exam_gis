@@ -5,7 +5,9 @@
 #include"../Help/Help.h"
 #include<string>
 #include<unistd.h>
-class CliParser {
+
+class CliDefinition {
+
   private:
     char **argv;
     int argc;
@@ -17,8 +19,9 @@ class CliParser {
     std::string cmd();
     std::string errMessage(std::string);
     void missing(std::string, std::string);
+
   public:
-    CliParser(int, char **);
+    CliDefinition(int, char **);
     Command *parse();
     std::string usage();
 };

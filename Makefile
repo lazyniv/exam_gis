@@ -8,7 +8,7 @@ HASH = "Hash"
 COUNTER = "Counter"
 FILE_ANALYZER = "FileAnalyzer"
 HELP = "Help"
-CliPARSER = "CliParser"
+CliDEFINITION = "CliDefinition"
 GDB = "gdb"
 WORD = "world"
 
@@ -17,7 +17,7 @@ $(TARGET): mkbdir
 $(SRC)/$(LIB)/$(COUNTER)/Counter.cpp \
 $(SRC)/$(LIB)/$(HASH)/Hash.cpp \
 $(SRC)/$(LIB)/$(COMMAND)/Command.cpp \
-$(SRC)/$(LIB)/$(CliPARSER)/CliParser.cpp \
+$(SRC)/$(LIB)/$(CliDEFINITION)/CliDefinition.cpp \
 $(SRC)/$(LIB)/$(HELP)/Help.cpp \
 $(SRC)/main.cpp -o ./$(BULD_DIR)/$(TARGET)
 

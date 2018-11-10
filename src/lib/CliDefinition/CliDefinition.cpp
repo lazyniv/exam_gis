@@ -1,16 +1,15 @@
-#include"CliParser.h"
-#include<iostream> //FIXME
+#include "CliDefinition.h"
 
-CliParser::CliParser(int argc, char **argv) {
+CliDefinition::CliDefinition(int argc, char **argv) {
   this->argc = argc;
   this->argv = argv;
 }
 
-std::string CliParser::cmd() {
+std::string CliDefinition::cmd() {
   return argv[0];
 }
 
-void CliParser::parseOpt() {
+void CliDefinition::parseOpt() {
   int opt = 0;
   std::string optString = "f:m:v:h";
   while(opt != -1) {
@@ -33,17 +32,17 @@ void CliParser::parseOpt() {
   }
 }
 
-std::string CliParser::errMessage(std::string mess) {
+std::string CliDefinition::errMessage(std::string mess) {
   return mess + "\n Try `" + cmd() + " -h' for help.";
 }
 
-void CliParser::missing(std::string val, std::string mess)
+void CliDefinition::missing(std::string val, std::string mess)
 {
   if(val.empty())
     throw errMessage("Missing " + mess);
 }
 
-std::string CliParser::usage() {
+std::string CliDefinition::usage() {
   return "OPTS:\n\
   -h - show this message\n\
   -m - working mode [checksum|words]\n\
@@ -53,7 +52,7 @@ std::string CliParser::usage() {
   -v - word (for <words> mode only)\n";
 }
 
-Command *CliParser::parse() {
+Command *CliDefinition::parse() {
 
   parseOpt();
 

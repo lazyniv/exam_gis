@@ -1,16 +1,17 @@
 #ifndef HELP_H
 #define HELP_H
 #include "../Command/Command.h"
-#include "../CliParser/CliParser.h"
+#include "../CliDefinition/CliDefinition.h"
 #include <string>
 
-class CliParser;
+class CliDefinition;
 class Help: public Command {
+
   private:
-    CliParser *cliParser;
+    CliDefinition *cliParser;
 
   public:
     std::string resultAsString() override;
-    Help(CliParser *);
+    Help(CliDefinition *);
 };
 #endif

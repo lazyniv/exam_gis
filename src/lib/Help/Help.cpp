@@ -1,6 +1,6 @@
 #include "Help.h"
 
-Help::Help(CliParser *p) {
+Help::Help(CliDefinition *p) {
   this->cliParser = p;
 }
 
