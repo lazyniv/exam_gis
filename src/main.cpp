@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
     parser.parse()->run();
   }
   catch (std::string e) {
-    std::cerr << "ERROR: " << e << "\n";
+    std::cerr << "ERROR: " << e << std::endl;
     return 1;
   }
   return 0;
